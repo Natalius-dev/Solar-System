@@ -12,206 +12,223 @@ const hideMoons = {"Show Moons":true, "Show Moon Orbits": false};
 
 // ===================== PLANETARY DATA ==================
 
-// semi_major for planets is in kilometres * 10^6, for satellites its in kilometres
+// semi_major for planets is in kilometres * 10^-6, for satellites its in kilometres
 // inclination and tilt is in degrees
 // inclination is in reference to the sun's equator
 // radius is in kilometres
 
 // forgot to add spin speed
 
-// For better visibility, the semi-major axes of the planets are divided by 4 and their radii multiplied by 4. To compensate for this, the semi-major axes of all moons are multiplied by 4 as well as their radii.
-// For the outer gas planets, their radii stays the same but their semi-major axes are also divided by 4. The outer moons have their radii multiplied by 4 but their semi-major axes stay the same.
-
 const sun = {
     name: "The Sun",
-    radius: 695700/5,
-    tilt: 7.25
+    texture: "textures/sun.jpg",
+    radius: 695700,
+    tilt: 7.25,
+    rings: false
 }
 
 const mercury = {
     name: "Mercury",
-    semi_major: 57.909/8,
+    texture: "textures/mercury.jpg",
+    semi_major: 57.909,
     eccentric: 0.205630,
     inclination: 7.004,
-    radius: 2440.5*8,
+    radius: 2440.5,
     tilt: 0.034,
-    satellites: []
+    satellites: [],
+    rings: false
 }
 
 const venus = {
     name: "Venus",
-    semi_major: 108.210/8,
+    texture: "textures/venus.jpg",
+    semi_major: 108.210,
     eccentric: 0.0068,
     inclination: 3.395,
-    radius: 6051.8*8,
+    radius: 6051.8,
     tilt: 177.36,
-    satellites: []
+    satellites: [],
+    rings: false
 }
 
 const earth = {
     name: "Earth",
-    semi_major: 149.598/8,
+    texture: "textures/earth.png",
+    semi_major: 149.598,
     eccentric: 0.0167,
     inclination: 0,
-    radius: 6378.137*8,
+    radius: 6378.137,
     tilt: 23.44,
     satellites: [{
         name: "The Moon",
-        semi_major: 0.3844*6,
+        texture: "textures/moon.jpg",
+        semi_major: 0.3844,
         eccentric: 0.0549,
         inclination: 50.145,
-        radius: 1738.1*8,
+        radius: 1738.1,
         tilt: 6.68,
-    }]
+    }],
+    rings: false
 }
 
 const mars = {
     name: "Mars",
-    semi_major: 227.956/8,
+    texture: "textures/mars.jpg",
+    semi_major: 227.956,
     eccentric: 0.0935,
     inclination: 1.848,
-    radius: 3396.2*8,
+    radius: 3396.2,
     tilt: 25.19,
-    satellites: [
-        {
-        name: "Phobos",
-        semi_major: 9376*6,
-        eccentric: 0.0151,
-        inclination: 1.093,
-        radius: 11.2667*8,
-        tilt: 0,
-        },
-        {
-        name: "Deimos",
-        semi_major: 23463.2*6,
-        eccentric: 0.00033,
-        inclination: 0.93,
-        radius: 6.29*8,
-        tilt: 0,
-        }
-    ]
+    satellites: [],
+    rings: false
 }
 
 const jupiter = {
     name: "Jupiter",
-    semi_major: 778.479/12,
+    texture: "textures/jupiter.jpg",
+    semi_major: 778.479,
     eccentric: 0.0487,
     inclination: 3.13,
-    radius: 69173*4,
+    radius: 69173,
     tilt: 3.13,
     satellites: [
         {
         name: "Io",
-        semi_major: 0.4217*16,
+        texture: "textures/io.jpg",
+        semi_major: 0.4217,
         eccentric: 0.0041,
         inclination: 2.213,
-        radius: 1821.6*8,
+        radius: 1821.6,
         tilt: 0,
         },
         {
         name: "Europa",
-        semi_major: 0.6711*13,
+        texture: "textures/europa.jpg",
+        semi_major: 0.6711,
         eccentric: 0.009,
         inclination: 0.47,
-        radius: 1560.8*8,
+        radius: 1560.8,
         tilt: 0.1,
         },
         {
         name: "Ganymede",
-        semi_major: 1.0704*10,
+        texture: "textures/ganymede.jpg",
+        semi_major: 1.0704,
         eccentric: 0.001,
         inclination: 0.18,
-        radius: 2631.2*8,
+        radius: 2631.2,
         tilt: 0.33,
         },
         {
         name: "Callisto",
-        semi_major: 1.8827*7,
+        texture: "textures/callisto.jpg",
+        semi_major: 1.8827,
         eccentric: 0.007,
         inclination: 0.19,
-        radius: 2410.3*8,
+        radius: 2410.3,
         tilt: 0,
         }
-    ]
+    ],
+    rings: false
 }
 
 const saturn = {
     name: "Saturn",
-    semi_major: 1432.041/12,
+    texture: "textures/saturn.jpg",
+    semi_major: 1432.041,
     eccentric: 0.0520,
     inclination: 2.486,
-    radius: 57316*4,
+    radius: 57316,
     tilt: 26.73,
     satellites: [
         {
             name: "Mimas",
-            semi_major: 0.18552*60,
+            texture: "textures/mimas.jpg",
+            semi_major: 0.18552,
             eccentric: 0.0202,
             inclination: 1.53,
-            radius: 198*8,
+            radius: 198,
             tilt: 0,
         },
         {
             name: "Enceladus",
-            semi_major: 0.23802*52.5,
+            texture: "textures/enceladus.jpg",
+            semi_major: 0.23802,
             eccentric: 0.0045,
             inclination: 0,
-            radius: 252*8,
+            radius: 252,
             tilt: 0,
         },
         {
             name: "Tethys",
-            semi_major: 0.29466*45,
+            texture: "textures/tethys.jpg",
+            semi_major: 0.29466,
             eccentric: 0,
             inclination: 1.86,
-            radius: 531*8,
+            radius: 531,
             tilt: 0,
         },
         {
             name: "Dione",
-            semi_major: 0.3774*37.5,
+            texture: "textures/dione.jpg",
+            semi_major: 0.3774,
             eccentric: 0.0022,
             inclination: 0.02,
-            radius: 561.5*8,
+            radius: 561.5,
             tilt: 0,
         },
         {
             name: "Rhea",
-            semi_major: 0.52704*30,
+            texture: "textures/rhea.jpg",
+            semi_major: 0.52704,
             eccentric: 0.001,
             inclination: 0.35,
-            radius: 763.5*8,
+            radius: 763.5,
             tilt: 0,
         },
         {
             name: "Titan",
-            semi_major: 1.22183*15,
+            texture: "textures/titan.jpg",
+            semi_major: 1.22183,
             eccentric: 0.0292,
             inclination: 0.33,
-            radius: 2574.5*8,
+            radius: 2574.5,
             tilt: 0,
         }
-    ]
+    ],
+    rings: true,
+    rings_texture: "textures/saturn ring.png",
+    // D Ring to F ring
+    rings_inner_radius: 66900,
+    rings_outer_radius: 139826
 }
 
 const uranus = {
     name: "Uranus",
-    semi_major: 2867.043/16,
+    texture: "textures/uranus.jpg",
+    semi_major: 2867.043,
     eccentric: 0.0469,
     inclination: 0.77,
-    radius: 25266*4,
+    radius: 25266,
     tilt: 97.77,
-    satellites: []
+    satellites: [],
+    rings: true,
+    rings_texture: "textures/uranus ring.png",
+    // Ring 6 to the Epsilon Ring
+    rings_inner_radius: 41837,
+    rings_outer_radius: 51149
 }
 
 const neptune = {
     name: "Neptune",
-    semi_major: 4514.953/16,
+    texture: "textures/neptune.jpg",
+    semi_major: 4514.953,
     eccentric: 0.0097,
     inclination: 1.77,
-    radius: 24552.5*4,
+    radius: 24552.5,
     tilt: 28.32,
-    satellites: []
+    satellites: [],
+    rings: false
 }
 
 // ===================== FUNCTIONS =================
@@ -221,17 +238,16 @@ function degrees_to_radians(degrees)
   var pi = Math.PI;
   return degrees * (pi/180);
 }
-
 function generateOrbit(body, centerX, centerY, count) {
     // a is the semi-major axis
     // e is the eccentricity
-    let a = body.semi_major;
+    let a = Math.pow( Math.log(body.semi_major), 3.15 )*1.15;
     let e = body.eccentric;
     let b = a*(Math.sqrt(1-(Math.pow(e,2))));
 
     let path = new THREE.EllipseCurve(
         centerX, centerY,
-        a*100, b*100,
+        a, b,
         0, 2*Math.PI,
         true,
         0
@@ -243,6 +259,7 @@ function generateOrbit(body, centerX, centerY, count) {
 
         pathArray.push(pos);
     }
+    pathArray.push(pathArray[0]);
 
     const orbitMesh = new THREE.Line(new THREE.BufferGeometry().setFromPoints( pathArray ), new THREE.LineBasicMaterial({color:"#fff",linewidth:1}) );
 
@@ -253,13 +270,24 @@ function generateOrbit(body, centerX, centerY, count) {
     return [pathArray,orbitMesh];
 }
 
-function addBody(texture, body) {
-    const textureMap = new THREE.TextureLoader().load(texture);
+function radiusLog(radius) {
+    return Math.pow( Math.log(radius), 2.85 )/32;
+}
+function addBody(body) {
+    const textureMap = new THREE.TextureLoader().load(body.texture);
     textureMap.magFilter = THREE.NearestFilter;
     textureMap.generateMipmaps = false;
     textureMap.minFilter = THREE.LinearFilter;
-    const obj = new THREE.Mesh(new THREE.SphereGeometry(body.radius/500,64,32), new THREE.MeshStandardMaterial({ map: textureMap }));
+    const obj = new THREE.Mesh(new THREE.SphereGeometry(radiusLog(body.radius),64,32), new THREE.MeshStandardMaterial({ map: textureMap }));
     obj.rotation.z = degrees_to_radians(body.tilt);
+
+    if(body.rings === true) {
+        const rings = new THREE.Mesh( new THREE.RingGeometry(Math.pow( radiusLog(body.rings_inner_radius), 1.035 ),Math.pow( radiusLog(body.rings_outer_radius), 1.165 ),100,1,0,degrees_to_radians(360)), new THREE.MeshStandardMaterial({ color:"#fff", side: THREE.DoubleSide, map: new THREE.TextureLoader().load(body.rings_texture), transparent: true }) );
+        rings.setRotationFromAxisAngle(new THREE.Vector3(1,0,0),degrees_to_radians(90));
+        rings.rotation.y = degrees_to_radians(body.tilt);
+        obj.attach(rings);
+    }
+
     scene.add(obj);
 
     interact.add(obj);
@@ -311,7 +339,7 @@ scene.add(new THREE.Mesh(new THREE.BoxGeometry(500000,500000/2,500000/2), skybox
 
 // BODY GENERATION
 
-const sunObj = addBody("textures/sun.jpg", sun);
+const sunObj = addBody(sun);
 sunObj.position.setX(0);
 const sunTextureMap = new THREE.TextureLoader().load("textures/sun.jpg");
 sunTextureMap.magFilter = THREE.NearestFilter;
@@ -325,117 +353,109 @@ controlTarget["Camera Target"] = sunObj.position;
 
 let orbitSpeed = 134.766507574;
 
-const mercuryObj = addBody("textures/mercury.jpg", mercury);
+const mercuryObj = addBody(mercury);
 const mercuryOrbit = generateOrbit(mercury,sunObj.position.x,sunObj.position.z,orbitSpeed*mercury.semi_major);
 mercuryObj.position.copy(mercuryOrbit[0][0]);
 let mercuryOrbitIndex = 0;
 
-const venusObj = addBody("textures/venus.jpg", venus);
+const venusObj = addBody(venus);
 venusObj.position.setX(-300);
 const venusOrbit = generateOrbit(venus,sunObj.position.x,sunObj.position.z,orbitSpeed*venus.semi_major);
 venusObj.position.copy(venusOrbit[0][0]);
 let venusOrbitIndex = 0;
 
-const earthObj = addBody("textures/earth.png", earth);
+const earthObj = addBody(earth);
 const earthOrbit = generateOrbit(earth,sunObj.position.x,sunObj.position.z,orbitSpeed*earth.semi_major);
 earthObj.position.copy(earthOrbit[0][0]);
 let earthOrbitIndex = 0;
 
 let moonOrbitSpeed = 500;
-const moonObj = addBody("textures/moon.jpg", earth.satellites[0]);
+const moonObj = addBody(earth.satellites[0]);
 let moonOrbit = generateOrbit(earth.satellites[0],earthObj.position.x,earthObj.position.z,moonOrbitSpeed);
 moonObj.position.copy(moonOrbit[0][0]);
 let moonOrbitIndex = 0;
 
-const marsObj = addBody("textures/mars.jpg", mars);
+const marsObj = addBody(mars);
 const marsOrbit = generateOrbit(mars,sunObj.position.x,sunObj.position.z,orbitSpeed*mars.semi_major);
 marsObj.position.copy(marsOrbit[0][0]);
 let marsOrbitIndex = 0;
 
-const jupiterObj = addBody("textures/jupiter.jpg", jupiter);
+const jupiterObj = addBody(jupiter);
 const jupiterOrbit = generateOrbit(jupiter,sunObj.position.x,sunObj.position.z,orbitSpeed*jupiter.semi_major);
 jupiterObj.position.copy(jupiterOrbit[0][0]);
 let jupiterOrbitIndex = 0;
 
 let ioOrbitSpeed = 450;
-const ioObj = addBody("textures/io.jpg", jupiter.satellites[0]);
+const ioObj = addBody(jupiter.satellites[0]);
 let ioOrbit = generateOrbit(jupiter.satellites[0],jupiterObj.position.x,jupiterObj.position.z,ioOrbitSpeed);
 ioObj.position.copy(ioOrbit[0][0]);
 let ioOrbitIndex = 0;
 
 let europaOrbitSpeed = 500;
-const europaObj = addBody("textures/europa.jpg", jupiter.satellites[1]);
+const europaObj = addBody(jupiter.satellites[1]);
 let europaOrbit = generateOrbit(jupiter.satellites[1],jupiterObj.position.x,jupiterObj.position.z,europaOrbitSpeed);
 europaObj.position.copy(europaOrbit[0][0]);
 let europaOrbitIndex = 0;
 
 let ganymedeOrbitSpeed = 550;
-const ganymedeObj = addBody("textures/ganymede.jpg", jupiter.satellites[2]);
+const ganymedeObj = addBody(jupiter.satellites[2]);
 let ganymedeOrbit = generateOrbit(jupiter.satellites[2],jupiterObj.position.x,jupiterObj.position.z,ganymedeOrbitSpeed);
 ganymedeObj.position.copy(ganymedeOrbit[0][0]);
 let ganymedeOrbitIndex = 0;
 
 let callistoOrbitSpeed = 600;
-const callistoObj = addBody("textures/callisto.jpg", jupiter.satellites[3]);
+const callistoObj = addBody(jupiter.satellites[3]);
 let callistoOrbit = generateOrbit(jupiter.satellites[3],jupiterObj.position.x,jupiterObj.position.z,callistoOrbitSpeed);
 callistoObj.position.copy(callistoOrbit[0][0]);
 let callistoOrbitIndex = 0;
 
-const saturnObj = addBody("textures/saturn.jpg", saturn);
-const saturnRings = new THREE.Mesh( new THREE.RingGeometry((66900*4)/500,(139826*4)/500,100,1,0,degrees_to_radians(360)), new THREE.MeshStandardMaterial({ color:"#fff", side: THREE.DoubleSide, map: new THREE.TextureLoader().load("textures/saturn ring.png"), transparent: true }) );
-saturnRings.setRotationFromAxisAngle(new THREE.Vector3(1,0,0),degrees_to_radians(90));
-saturnRings.rotation.y = degrees_to_radians(saturn.tilt);
-saturnObj.attach(saturnRings);
+const saturnObj = addBody(saturn);
 const saturnOrbit = generateOrbit(saturn,sunObj.position.x,sunObj.position.z,orbitSpeed*saturn.semi_major);
 saturnObj.position.copy(saturnOrbit[0][0]);
 let saturnOrbitIndex = 0;
 
 let mimasOrbitSpeed = 300;
-const mimasObj = addBody("textures/mimas.jpg", saturn.satellites[0]);
+const mimasObj = addBody(saturn.satellites[0]);
 let mimasOrbit = generateOrbit(saturn.satellites[0],saturnObj.position.x,saturnObj.position.z,mimasOrbitSpeed);
 mimasObj.position.copy(mimasOrbit[0][0]);
 let mimasOrbitIndex = 0;
 
 let enceladusOrbitSpeed = 350;
-const enceladusObj = addBody("textures/enceladus.jpg", saturn.satellites[1]);
+const enceladusObj = addBody(saturn.satellites[1]);
 let enceladusOrbit = generateOrbit(saturn.satellites[1],saturnObj.position.x,saturnObj.position.z,enceladusOrbitSpeed);
 enceladusObj.position.copy(enceladusOrbit[0][0]);
 let enceladusOrbitIndex = 0;
 
 let tethysOrbitSpeed = 400;
-const tethysObj = addBody("textures/tethys.jpg", saturn.satellites[2]);
+const tethysObj = addBody(saturn.satellites[2]);
 let tethysOrbit = generateOrbit(saturn.satellites[2],saturnObj.position.x,saturnObj.position.z,tethysOrbitSpeed);
 tethysObj.position.copy(tethysOrbit[0][0]);
 let tethysOrbitIndex = 0;
 
 let dioneOrbitSpeed = 450;
-const dioneObj = addBody("textures/dione.jpg", saturn.satellites[3]);
+const dioneObj = addBody(saturn.satellites[3]);
 let dioneOrbit = generateOrbit(saturn.satellites[3],saturnObj.position.x,saturnObj.position.z,dioneOrbitSpeed);
 dioneObj.position.copy(dioneOrbit[0][0]);
 let dioneOrbitIndex = 0;
 
 let rheaOrbitSpeed = 500;
-const rheaObj = addBody("textures/rhea.jpg", saturn.satellites[4]);
+const rheaObj = addBody(saturn.satellites[4]);
 let rheaOrbit = generateOrbit(saturn.satellites[4],saturnObj.position.x,saturnObj.position.z,rheaOrbitSpeed);
 rheaObj.position.copy(rheaOrbit[0][0]);
 let rheaOrbitIndex = 0;
 
 let titanOrbitSpeed = 550;
-const titanObj = addBody("textures/titan.jpg", saturn.satellites[5]);
+const titanObj = addBody(saturn.satellites[5]);
 let titanOrbit = generateOrbit(saturn.satellites[5],saturnObj.position.x,saturnObj.position.z,titanOrbitSpeed);
 titanObj.position.copy(titanOrbit[0][0]);
 let titanOrbitIndex = 0;
 
-const uranusObj = addBody("textures/uranus.jpg", uranus);
-const uranusRings = new THREE.Mesh( new THREE.RingGeometry((26840*4)/500,(51149*4)/500,100,1,0,degrees_to_radians(360)), new THREE.MeshStandardMaterial({ color:"#fff", side: THREE.DoubleSide, map: new THREE.TextureLoader().load("textures/uranus ring.png"), transparent: true }) );
-uranusRings.setRotationFromAxisAngle(new THREE.Vector3(1,0,0),degrees_to_radians(90));
-uranusRings.rotation.y = degrees_to_radians(uranus.tilt);
-uranusObj.attach(uranusRings);
+const uranusObj = addBody(uranus);
 const uranusOrbit = generateOrbit(uranus,sunObj.position.x,sunObj.position.z,orbitSpeed*uranus.semi_major);
 uranusObj.position.copy(uranusOrbit[0][0]);
 let uranusOrbitIndex = 0;
 
-const neptuneObj = addBody("textures/neptune.jpg", neptune);
+const neptuneObj = addBody(neptune);
 const neptuneOrbit = generateOrbit(neptune,sunObj.position.x,sunObj.position.z,orbitSpeed*neptune.semi_major);
 neptuneObj.position.copy(neptuneOrbit[0][0]);
 let neptuneOrbitIndex = 0;
