@@ -259,9 +259,10 @@ function generateOrbit(body, centerX, centerY, count) {
 
         pathArray.push(pos);
     }
-    pathArray.push(pathArray[0]);
 
-    const orbitMesh = new THREE.Line(new THREE.BufferGeometry().setFromPoints( pathArray ), new THREE.LineBasicMaterial({color:"#fff",linewidth:1}) );
+    let pathArrayClosed = pathArray;
+    pathArrayClosed.push(pathArray[0]);
+    const orbitMesh = new THREE.Line(new THREE.BufferGeometry().setFromPoints( pathArrayClosed ), new THREE.LineBasicMaterial({color:"#fff",linewidth:1}) );
 
     if(showOrbits["Show Orbits"]){
         scene.add(orbitMesh);
@@ -270,19 +271,19 @@ function generateOrbit(body, centerX, centerY, count) {
     return [pathArray,orbitMesh];
 }
 
-function radiusLog(radius) {
-    return Math.pow( Math.log(radius), 2.85 )/32;
-}
 function addBody(body) {
     const textureMap = new THREE.TextureLoader().load(body.texture);
     textureMap.magFilter = THREE.NearestFilter;
     textureMap.generateMipmaps = false;
     textureMap.minFilter = THREE.LinearFilter;
-    const obj = new THREE.Mesh(new THREE.SphereGeometry(radiusLog(body.radius),64,32), new THREE.MeshStandardMaterial({ map: textureMap }));
+    const modified_radius = Math.pow( Math.log(body.radius), 2.85 )/32;
+    const obj = new THREE.Mesh(new THREE.SphereGeometry(modified_radius,64,32), new THREE.MeshStandardMaterial({ map: textureMap }));
     obj.rotation.z = degrees_to_radians(body.tilt);
 
     if(body.rings === true) {
-        const rings = new THREE.Mesh( new THREE.RingGeometry(Math.pow( radiusLog(body.rings_inner_radius), 1.035 ),Math.pow( radiusLog(body.rings_outer_radius), 1.165 ),100,1,0,degrees_to_radians(360)), new THREE.MeshStandardMaterial({ color:"#fff", side: THREE.DoubleSide, map: new THREE.TextureLoader().load(body.rings_texture), transparent: true }) );
+        const rings_inner_ratio = body.rings_inner_radius/body.radius;
+        const rings_outer_ratio = body.rings_outer_radius/body.radius;
+        const rings = new THREE.Mesh( new THREE.RingGeometry(modified_radius*rings_inner_ratio,modified_radius*rings_outer_ratio,100,1,0,degrees_to_radians(360)), new THREE.MeshStandardMaterial({ color:"#fff", side: THREE.DoubleSide, map: new THREE.TextureLoader().load(body.rings_texture), transparent: true }) );
         rings.setRotationFromAxisAngle(new THREE.Vector3(1,0,0),degrees_to_radians(90));
         rings.rotation.y = degrees_to_radians(body.tilt);
         obj.attach(rings);
